@@ -2,4 +2,4 @@
 
 ## Branches
 
-- [example-a](35ab839)
+- [example-a](https://github.com/kellegous/codeowners-test/tree/example-a)
