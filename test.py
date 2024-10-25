@@ -54,6 +54,8 @@ class Branch(object):
 
 
 def update_readme():
+    must_call(["git", "checkout", "main"])
+
     items = [
         "- [{}]({}tree/{})".format(branch.name, BASE_URL, branch.name)
         for branch in get_branches()
@@ -67,6 +69,7 @@ def update_readme():
 
     must_call(["git", "add", "README.md"])
     must_call(["git", "commit", "-m", "Update README.md"])
+    must_call(["git", "push"])
 
 
 def create_test(args):
