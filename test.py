@@ -65,6 +65,9 @@ def update_readme():
         f.write("\n".join(items))
         f.write("\n")
 
+    must_call(["git", "add", "README.md"])
+    must_call(["git", "commit", "-m", "Update README.md"])
+
 
 def create_test(args):
     branches = select_branches(args.names)
