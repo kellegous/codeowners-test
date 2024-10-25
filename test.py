@@ -5,6 +5,8 @@ import os
 import sys
 import subprocess
 
+BASE_URL = "https://github.com/kellegous/codeowner-test/"
+
 
 def must_call(cmd: list):
     status = subprocess.call(cmd)
@@ -52,23 +54,16 @@ class Branch(object):
 
 
 def update_readme():
-    branches = get_branches()
+    items = [
+        "- [{}]({}tree/{})".format(branch.name, BASE_URL, branch.name)
+        for branch in get_branches()
+    ]
 
-    refs = {}
-    for branch in branches():
-        p = subprocess.Popen(
-            ["git", "rev-parse", "--short", branch.name],
-            stdout=subprocess.PIPE,
-        )
-        out, _ = p.communicate()
-        if p.wait() == 0:
-            refs[branch.name] = out.decode("utf-8").strip()
-
-    def create_list_item(branch):
-        ref = refs.get(branch.name)
-        if ref is None:
-            return "- {}".format(branch.name)
-        return "- [{}]({})".format(branch.name, ref)
+    with open("README.md", "w") as f:
+        f.write("# Codeowner Test\n\n")
+        f.write("## Branches\n\n")
+        f.write("\n".join(items))
+        f.write("\n")
 
 
 def create_test(args):
@@ -76,6 +71,7 @@ def create_test(args):
     must_call(["git", "checkout", "main"])
     for branch in branches:
         branch.update()
+    update_readme()
 
 
 def delete_test(args):
@@ -84,6 +80,7 @@ def delete_test(args):
     for branch in branches:
         if not branch.delete():
             raise Exception("Failed to delete branch: {}".format(branch.name))
+    update_readme()
 
 
 def select_branches(names: list) -> list:
