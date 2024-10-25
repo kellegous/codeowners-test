@@ -51,6 +51,26 @@ class Branch(object):
         return a and b
 
 
+def update_readme():
+    branches = get_branches()
+
+    refs = {}
+    for branch in branches():
+        p = subprocess.Popen(
+            ["git", "rev-parse", "--short", branch.name],
+            stdout=subprocess.PIPE,
+        )
+        out, _ = p.communicate()
+        if p.wait() == 0:
+            refs[branch.name] = out.decode("utf-8").strip()
+
+    def create_list_item(branch):
+        ref = refs.get(branch.name)
+        if ref is None:
+            return "- {}".format(branch.name)
+        return "- [{}]({})".format(branch.name, ref)
+
+
 def create_test(args):
     branches = select_branches(args.names)
     must_call(["git", "checkout", "main"])
