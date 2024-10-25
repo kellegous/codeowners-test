@@ -1,7 +1,7 @@
 # Testing CODEOWNERS
 
 ## Branches
- - [example-a](kellegous/codeowners-test/tree/example-a)
+ - [example-a](tree/example-a)
  - [example-b](kellegous/codeowners-test/tree/example-b)
  - [example-c](kellegous/codeowners-test/tree/example-c)
  - [example-d](kellegous/codeowners-test/tree/example-d)
