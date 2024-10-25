@@ -202,7 +202,7 @@ def main():
     parser = argparse.ArgumentParser(prog="test.py")
     sub_parsers = parser.add_subparsers(help="subcommand help", required=True)
 
-    create = sub_parsers.add_parser("create", help="create help")
+    create = sub_parsers.add_parser("create", help="create help", aliases=["update"])
     create.add_argument("names", nargs="*", default=[], help="name help")
     create.set_defaults(func=create_test)
 
