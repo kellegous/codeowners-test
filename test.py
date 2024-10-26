@@ -16,6 +16,7 @@ def must_call(cmd: list):
 
 def touch_file(path: str):
     dir = os.path.dirname(path)
+    print("touch {} (dir: {})".format(path, dir))
     if dir != "" and not os.path.exists(dir):
         os.makedirs(dir)
     with open(path, "w") as f:
@@ -30,6 +31,8 @@ class Branch(object):
 
     def update(self) -> bool:
         self.delete()
+
+        must_call(["git", "checkout", "main"])
 
         must_call(["git", "checkout", "-b", self.name])
 
