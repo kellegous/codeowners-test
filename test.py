@@ -5,7 +5,7 @@ import os
 import sys
 import subprocess
 
-BASE_URL = "https://github.com/kellegous/codeowner-test/"
+BASE_URL = "https://github.com/kellegous/codeowners-test/"
 
 
 def must_call(cmd: list):
