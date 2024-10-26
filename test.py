@@ -70,6 +70,9 @@ def update_readme():
         f.write("\n".join(items))
         f.write("\n")
 
+    if subprocess.call(["git", "diff", "--quiet", "--", "README.md"]) == 0:
+        return
+
     must_call(["git", "add", "README.md"])
     must_call(["git", "commit", "-m", "Update README.md"])
     must_call(["git", "push"])
