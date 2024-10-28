@@ -11,3 +11,4 @@
 - [example-g](https://github.com/kellegous/codeowners-test/tree/example-g)
 - [example-h](https://github.com/kellegous/codeowners-test/tree/example-h)
 - [example-i](https://github.com/kellegous/codeowners-test/tree/example-i)
+- [example-j](https://github.com/kellegous/codeowners-test/tree/example-j)
