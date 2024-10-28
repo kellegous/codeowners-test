@@ -201,6 +201,17 @@ def get_branches():
                 "x/a/x/b": None,
             },
         ),  # ok
+        Branch(
+            "example-j",
+            ["a/b* @kellegous", "a/c* @kellegous"],
+            {
+                "a/b": 1,
+                "a/c/d": 2,
+                "a/c/e/f": 2,
+                "x/a/b": None,
+                "x/a/c/d": None,
+            },
+        ),
     ]
 
 
